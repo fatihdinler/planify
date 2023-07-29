@@ -2,16 +2,11 @@
 .vscode
 .todo
 
-# mobile
-.expo
-client/mobile/node_modules
-client/mobile/.env
-
 # web
-client/web/node_modules
-client/web/package-lock.json
-client/web/yarn.lock
-client/web/.env
+client/node_modules
+client/package-lock.json
+client/yarn.lock
+client/.env
 
 # server
 server/node_modules
