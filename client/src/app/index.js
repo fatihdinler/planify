@@ -1,5 +1,0 @@
-export { default as Home } from './home/home'
-export { default as Checkout } from './checkout/checkout'
-export { default as Navbar } from './global/navbar'
-export { default as ItemDetails } from './item-details/item-details'
-export { default as Confirmation } from './checkout/confirmation'

@@ -1,1 +1,0 @@
-export { default as ScrollToTop } from './scroll-to-top/scroll-to-top'
