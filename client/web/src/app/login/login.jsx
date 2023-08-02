@@ -24,7 +24,7 @@ const Login = () => {
         position: 'top-right'
       })
     }
-    else if(emailAdress && !userPassword) {
+    else if (emailAdress && !userPassword) {
       toast({
         title: 'Password cannot be skipped!',
         status: 'error',
@@ -32,7 +32,7 @@ const Login = () => {
         position: 'top-right'
       })
     }
-    else if(!emailAdress && userPassword) {
+    else if (!emailAdress && userPassword) {
       toast({
         title: 'E-mail cannot be skipped!',
         status: 'error',
@@ -40,7 +40,7 @@ const Login = () => {
         position: 'top-right'
       })
     }
-    else if(emailAdress && userPassword) {
+    else if (emailAdress && userPassword) {
       toast({
         title: 'Login is successful !',
         status: 'success',
