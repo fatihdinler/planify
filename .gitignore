@@ -21,4 +21,4 @@ server/yarn.lock
 server/package-lock.json
 server/.env
 server/config/.env
-server/uploads
+server/uploads/
