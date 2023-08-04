@@ -3,7 +3,7 @@ import { Heading, Text, useToast } from '@chakra-ui/react'
 import { Input, CheckboxInput, Button } from '../../components'
 import styles from '../../shared/styles/styles'
 import { Link } from 'react-router-dom'
-import { usePostRequest } from '../../shared/utils'
+import { usePostRequest, useGetRequest } from '../../shared/utils'
 import { API } from '../../shared/constants/api'
 
 const Register = () => {
@@ -48,16 +48,12 @@ const Register = () => {
 			}
 
 			await postRequest(API.USER.CREATE_USER, newForm, config)
-
-
-			// if (registerData && !isRegisterLoading && !registerError) {
-			// 	toast({
-			// 		title: 'Registration is successful!',
-			// 		status: 'success',
-			// 		isClosable: true,
-			// 		position: 'top-right'
-			// 	})
-			// }
+			toast({
+				title: 'Registration is successful!',
+				status: 'success',
+				isClosable: true,
+				position: 'top-right'
+			})
 		}
 	}
 
