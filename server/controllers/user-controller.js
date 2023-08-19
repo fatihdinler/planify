@@ -1,5 +1,6 @@
 const User = require('../models/user-model')
 const asyncHandler = require('express-async-handler')
+const { generateToken } = require('../config/jwt')
 
 const createUser = asyncHandler(async (req, res) => {
   const { email } = req.body
@@ -27,7 +28,19 @@ const loginUser = asyncHandler(async (req, res) => {
   if (findUser) {
     const isPasswordMatched = await findUser.isPasswordMatched(password)
     if (isPasswordMatched) {
-      res.status(200).json({ success: true, user: findUser, statusCode: 200 })
+      // Send the token
+      res.status(200).json({
+        success: true,
+        user: {
+          id: findUser?._id,
+          firstname: findUser?.firstname,
+          lastname: findUser?.lastname,
+          email: findUser?.email,
+          mobile: findUser?.mobile,
+          token: generateToken(findUser?._id)
+        },
+        statusCode: 200
+      })
     } else {
       // Incorrect password
       res.status(401).json({ success: false, message: 'Incorrect password', statusCode: 401 })
@@ -38,5 +51,59 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 })
 
+const getUsers = asyncHandler(async (req, res) => {
+  try {
+    const users = await User.find({})
+    if (users.length > 0) {
+      res.status(200).json(users)
+    }
+    else {
+      res.status(200).json({ success: true, message: 'There is no user created in the db', status: 200 })
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
+})
 
-module.exports = { createUser, loginUser }
+const getUser = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params
+    if (id) {
+      const user = await User.findById(id)
+      if (user) {
+        res.status(200).json({ success: true, status: 200, user })
+      }
+      else {
+        res.status(404).json({ success: false, status: 404, message: 'User not found' })
+      }
+    }
+    else {
+      res.status(404).json({ success: false, status: 404, message: 'You have to pass user id as request params' })
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+const deleteUser = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params
+    if (id) {
+      const user = await User.findByIdAndDelete(id)
+      if (user) {
+        res.status(200).json({ success: true, status: 200, message: 'User is deleted successfully', user })
+      }
+      else {
+        res.status(404).json({ success: false, status: 404, message: 'User not found' })
+      }
+    }
+    else {
+      res.status(404).json({ success: false, status: 404, message: 'You have to pass user id as request params' })
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+
+module.exports = { createUser, loginUser, getUsers, getUser, deleteUser }
