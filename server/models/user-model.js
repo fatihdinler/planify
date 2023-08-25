@@ -47,6 +47,9 @@ const userSchema = new mongoose.Schema({
 	wishList: [{
 		type: mongoose.Schema.Types.ObjectId, ref: 'Product'
 	}],
+	refreshToken: {
+		type: String,
+	}
 }, { timestamps: true })
 
 userSchema.pre('save', async function (next) {
