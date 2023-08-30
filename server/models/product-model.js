@@ -21,14 +21,20 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+    // type: mongoose.Schema.Types.ObjectId,
+    // ref: 'Category',
+    type: String,
+    required: true,
   },
   brand: {
     type: String,
-    enum: ['Apple', 'Samsung', 'Lenovo']
+    required: true,
+    // enum: ['Apple', 'Samsung', 'Lenovo']
   },
-  quantitiy: Number,
+  quantitiy: {
+    type: Number,
+    required: true,
+  },
   sold: {
     type: Number,
     default: 0
@@ -38,12 +44,13 @@ const productSchema = new mongoose.Schema({
   },
   color: {
     type: String,
-    enum: ['Black', 'Brown', 'Red']
+    required: true
+    // enum: ['Black', 'Brown', 'Red']
   },
   ratings: [{
     start: Number,
     postedBy: {
-      type: mongoose.Schema.Types.ObjectId(),
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }
   }]
