@@ -1,6 +1,7 @@
 const Product = require('../models/product-model')
 const asyncHandler = require('express-async-handler')
 const slugify = require('slugify')
+const { slugProductController } = require('../utils/slugify')
 
 const createProduct = asyncHandler(async (req, res) => {
   try {
@@ -38,7 +39,7 @@ const getProducts = asyncHandler(async (req, res) => {
       res.status(200).json({ success: true, products })
     }
     else if (products.length === 0) {
-      res.status(200).json({success: true, message: 'There is no product record in database', products})
+      res.status(200).json({ success: true, message: 'There is no product record in database', products })
     }
   } catch (error) {
     throw new Error(error)
@@ -46,7 +47,19 @@ const getProducts = asyncHandler(async (req, res) => {
 })
 
 const updateProduct = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params
+    slugProductController(req)
 
+    const product = await Product.findOneAndUpdate(id, req.body, {
+      new: true
+    })
+    if (product) {
+      res.status(200).json({ success: true, message: 'Product is updated successfully', product })
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
 })
 
 module.exports = {
