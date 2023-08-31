@@ -48,12 +48,26 @@ const updateProduct = asyncHandler(async (req, res) => {
     const { id } = req.params
     slugProductController(req)
 
-    const product = await Product.findOneAndUpdate({_id: id}, req.body, {
+    const product = await Product.findOneAndUpdate({ _id: id }, req.body, {
       new: true
     })
-    console.log('product -->', product)
     if (product) {
       res.status(200).json({ success: true, message: 'Product is updated successfully', product })
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+const deleteProduct = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params
+    const deletedProduct = await Product.findOneAndDelete({ _id: id })
+    if (deletedProduct) {
+      res.status(200).json({ success: true, message: 'Product is deleted successfully' })
+    }
+    else {
+      res.status(404).json({ success: false, message: 'Something went wrong while deleting the product' })
     }
   } catch (error) {
     throw new Error(error)
@@ -64,5 +78,6 @@ module.exports = {
   createProduct,
   getProduct,
   getProducts,
-  updateProduct
+  updateProduct,
+  deleteProduct
 }
