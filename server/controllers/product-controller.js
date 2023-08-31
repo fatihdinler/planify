@@ -1,13 +1,10 @@
 const Product = require('../models/product-model')
 const asyncHandler = require('express-async-handler')
-const slugify = require('slugify')
 const { slugProductController } = require('../utils/slugify')
 
 const createProduct = asyncHandler(async (req, res) => {
   try {
-    if (req.body.title) {
-      req.body.slug = slugify(req.body.title, req.body.color, req.body.category, req.body.description)
-    }
+    slugProductController(req)
     const product = await Product.create(req.body)
     if (product) {
       res.status(200).json({ success: true, message: 'Product is created successfully', product })
@@ -51,9 +48,10 @@ const updateProduct = asyncHandler(async (req, res) => {
     const { id } = req.params
     slugProductController(req)
 
-    const product = await Product.findOneAndUpdate(id, req.body, {
+    const product = await Product.findOneAndUpdate({_id: id}, req.body, {
       new: true
     })
+    console.log('product -->', product)
     if (product) {
       res.status(200).json({ success: true, message: 'Product is updated successfully', product })
     }

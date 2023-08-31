@@ -2,7 +2,7 @@ const slugify = require('slugify')
 
 const slugProductController = (req) => {
   if (req.body.title) {
-    req.body.slug = slugify(req.body.title, req.body.color, req.body.category, req.body.description)
+    req.body.slug = slugify(req.body.title)
   }
   return req.body.slug
 }
