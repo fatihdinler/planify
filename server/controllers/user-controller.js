@@ -197,7 +197,7 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
   }
   jwt.verify(
     refreshToken,
-    process.env.JWT_SECRET, 
+    process.env.JWT_SECRET,
     (err, decoded) => {
       if (err || relatedUser._id !== decoded.id) {
         throw new Error('Something went wrong with refresh token')
@@ -210,16 +210,33 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
   )
 })
 
+const updatePassword = asyncHandler(async (req, res) => {
+  const { _id } = req.user
+  const { password } = req.body
+  validateMongoDBId(_id)
 
-module.exports = { 
-  createUser, 
-  loginUser, 
-  getUsers, 
-  getUser, 
-  deleteUser, 
-  updateUser, 
-  blockUser, 
+  const user = await User.findById(_id)
+  if (password) {
+    user.password = password
+    const updatedUser = await user.save()
+
+    res.status(200).json({ success: true, message: 'Password is updated successfully', updatedUser })
+  } else {
+    res.json(user)
+  }
+})
+
+
+module.exports = {
+  createUser,
+  loginUser,
+  getUsers,
+  getUser,
+  deleteUser,
+  updateUser,
+  blockUser,
   unBlockUser,
   handleRefreshToken,
-  logoutUser
+  logoutUser,
+  updatePassword,
 }
