@@ -19,6 +19,8 @@ const createBlog = asyncHandler(async (req, res) => {
 const updateBlog = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params
+    validateMongoDBId(id)
+
     const blog = await Blog.findOneAndUpdate({ _id: id }, req.body, {
       new: true
     })
@@ -34,6 +36,8 @@ const updateBlog = asyncHandler(async (req, res) => {
 const deleteBlog = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params
+    validateMongoDBId(id)
+
     const deletedBlog = await Blog.findOneAndDelete({ _id: id })
     if (deletedBlog) {
       res.status(200).json({ success: true, message: 'Blog is deleted successfully' })
@@ -49,6 +53,8 @@ const deleteBlog = asyncHandler(async (req, res) => {
 const getBlog = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params
+    validateMongoDBId(id)
+
     const blog = await Blog.findById(id)
     await Blog.findByIdAndUpdate(id, { $inc: { numViews: 1 } }, { new: true })
 
@@ -74,10 +80,49 @@ const getBlogs = asyncHandler(async (req, res) => {
   }
 })
 
+const likeBlog = asyncHandler(async (req, res) => {
+  const { blogId } = req.body
+  validateMongoDBId(blogId)
+
+  const blog = await Blog.findById(blogId) // Find the blog that you want to be liked.
+  const loggedInUserId = req?.user?._id // Find the logged in user that impression occurs.
+  const isLiked = blog?.isLiked // Find if the user has liked the blog.
+  const isBlogDislikedPreviously = blog?.dislikes?.find((userId = userId?.tosString() === loggedInUserId?.toString())) // Find the user has disliked the blog previously.
+
+  if (isBlogDislikedPreviously) {
+    const blog = await Blog.findByIdAndUpdate(blogId, {
+      $pull: { dislikes: loggedInUserId },
+      isDisliked: false
+    }, {
+      new: true
+    })
+    res.status(200).json(blog)
+  }
+
+  if (isLiked) {
+    const blog = await Blog.findByIdAndUpdate(blogId, {
+      $pull: { likes: loggedInUserId },
+      isLiked: false
+    }, {
+      new: true
+    })
+    res.status(200).json(blog)
+  } else {
+    const blog = await Blog.findByIdAndUpdate(blogId, {
+      $push: { likes: loggedInUserId },
+      isLiked: true
+    }, {
+      new: true
+    })
+    res.status(200).json(blog)
+  }
+})
+
 module.exports = {
   createBlog,
   updateBlog,
   deleteBlog,
   getBlog,
-  getBlogs
+  getBlogs,
+  likeBlog
 }
