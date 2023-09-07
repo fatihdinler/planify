@@ -55,7 +55,7 @@ const getBlog = asyncHandler(async (req, res) => {
     const { id } = req.params
     validateMongoDBId(id)
 
-    const blog = await Blog.findById(id)
+    const blog = await Blog.findById(id).populate('likes').populate('dislikes')
     await Blog.findByIdAndUpdate(id, { $inc: { numViews: 1 } }, { new: true })
 
     if (blog) {
@@ -80,6 +80,12 @@ const getBlogs = asyncHandler(async (req, res) => {
   }
 })
 
+// Programatically, when the user is likes a blog, then in the blog model,
+// the user's id should be holded in likes array & isLiked should be true.
+// If we send a request to the same route, then, the the user's id should
+// be removed from the likes array & isLiked should be false. The same
+// logic will be handled in dislikeBlog.
+
 const likeBlog = asyncHandler(async (req, res) => {
   const { blogId } = req.body
   validateMongoDBId(blogId)
@@ -87,7 +93,7 @@ const likeBlog = asyncHandler(async (req, res) => {
   const blog = await Blog.findById(blogId) // Find the blog that you want to be liked.
   const loggedInUserId = req?.user?._id // Find the logged in user that impression occurs.
   const isLiked = blog?.isLiked // Find if the user has liked the blog.
-  const isBlogDislikedPreviously = blog?.dislikes?.find((userId = userId?.tosString() === loggedInUserId?.toString())) // Find the user has disliked the blog previously.
+  const isBlogDislikedPreviously = blog?.dislikes?.find((userId => userId?.toString() === loggedInUserId?.toString())) // Find the user has disliked the blog previously.
 
   if (isBlogDislikedPreviously) {
     const blog = await Blog.findByIdAndUpdate(blogId, {
@@ -118,11 +124,50 @@ const likeBlog = asyncHandler(async (req, res) => {
   }
 })
 
+const dislikeBlog = asyncHandler(async (req, res) => {
+  const { blogId } = req.body
+  validateMongoDBId(blogId)
+
+  const blog = await Blog.findById(blogId) // Find the blog that you want to be liked.
+  const loggedInUserId = req?.user?._id // Find the logged in user that impression occurs.
+  const isDisliked = blog?.isDisliked // Find if the user has liked the blog.
+  const isBlogLikedPreviously = blog?.likes?.find((userId => userId?.toString() === loggedInUserId?.toString())) // Find the user has disliked the blog previously.
+
+  if (isBlogLikedPreviously) {
+    const blog = await Blog.findByIdAndUpdate(blogId, {
+      $pull: { likes: loggedInUserId },
+      isLiked: false
+    }, {
+      new: true
+    })
+    res.status(200).json(blog)
+  }
+
+  if (isDisliked) {
+    const blog = await Blog.findByIdAndUpdate(blogId, {
+      $pull: { dislikes: loggedInUserId },
+      isDisliked: false
+    }, {
+      new: true
+    })
+    res.status(200).json(blog)
+  } else {
+    const blog = await Blog.findByIdAndUpdate(blogId, {
+      $push: { dislikes: loggedInUserId },
+      isDisliked: true
+    }, {
+      new: true
+    })
+    res.status(200).json(blog)
+  }
+})
+
 module.exports = {
   createBlog,
   updateBlog,
   deleteBlog,
   getBlog,
   getBlogs,
-  likeBlog
+  likeBlog,
+  dislikeBlog
 }

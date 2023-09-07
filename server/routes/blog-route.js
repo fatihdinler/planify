@@ -7,7 +7,8 @@ const {
   deleteBlog,
   getBlog,
   getBlogs,
-  likeBlog
+  likeBlog,
+  dislikeBlog
 } = require('../controllers/blog-controller')
 
 router.post('/create', authMiddleware, isAdmin, createBlog)
@@ -16,5 +17,6 @@ router.delete('/delete/:id', authMiddleware, isAdmin, deleteBlog)
 router.get('/get-blog/:id', getBlog)
 router.get('/get-blogs', getBlogs)
 router.put('/likes', authMiddleware, isAdmin, likeBlog)
+router.put('/dislikes', authMiddleware, isAdmin, dislikeBlog)
 
 module.exports = router
