@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 4000
 const authRouter = require('./routes/auth-route')
 const productRouter = require('./routes/product-route')
 const blogRouter = require('./routes/blog-route')
-const categoryRouter = require('./routes/product-category-route')
+const productCategoryRoute = require('./routes/product-category-route')
+const blogCategoryRouter = require('./routes/blog-category-route')
 
 
 dbConnect()
@@ -23,7 +24,8 @@ app.use(cookieParser())
 app.use('/api/user', authRouter)
 app.use('/api/product', productRouter)
 app.use('/api/blog', blogRouter)
-app.use('/api/product-category', categoryRouter)
+app.use('/api/product-category', productCategoryRoute)
+app.use('/api/blog-category', blogCategoryRouter)
 
 // Use error-handler middlewares after the routes
 app.use(notFound)
