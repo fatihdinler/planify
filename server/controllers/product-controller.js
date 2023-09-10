@@ -1,4 +1,5 @@
 const Product = require('../models/product-model')
+const User = require('../models/user-model')
 const asyncHandler = require('express-async-handler')
 const { slugProductController } = require('../utils/slugify')
 
@@ -32,17 +33,17 @@ const getProduct = asyncHandler(async (req, res) => {
 const getProducts = asyncHandler(async (req, res) => {
 
   try {
-    const queryObj = {...req.query}
+    const queryObj = { ...req.query }
 
     const excludeFields = ['page', 'sort', 'limit', 'fields']
     excludeFields.forEach(field => delete queryObj[field])
-    
+
     let queryStr = JSON.stringify(queryObj)
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
 
     let query = Product.find(JSON.parse(queryStr))
 
-    if(req.query.sort) { // Sort
+    if (req.query.sort) { // Sort
       const sortBy = req.query.sort.split(',').join(' ')
       query = query.sort(sortBy)
     } else {
@@ -112,10 +113,104 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 })
 
+// The mechanism behined the addToWishlist controller is that
+// we do not provide an unWishList controller. By doing so,
+// user'll make a put request to this controller and when
+// they want to unwish the product, they need to make another 
+// put request with the same productId.
+const addToWishlist = asyncHandler(async (req, res) => {
+  const { _id } = req.user
+  const { productId } = req.body
+
+  try {
+    const user = await User.findById(_id)
+    const isProductAlreadyWished = user.wishList.find((id) => id.toString() === productId)
+
+    if (isProductAlreadyWished) {
+      const user = await User.findByIdAndUpdate(
+        _id,
+        {
+          $pull: { wishList: productId },
+        },
+        {
+          new: true,
+        }
+      )
+      res.json(user)
+    } else {
+      const user = await User.findByIdAndUpdate(
+        _id,
+        {
+          $push: { wishList: productId },
+        },
+        {
+          new: true,
+        }
+      )
+      res.json(user)
+    }
+
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+const rating = asyncHandler(async (req, res) => {
+  const { _id } = req.user
+  const { star, productId, comment } = req.body
+
+  try {
+    const product = await Product.findById(productId)
+
+    const alreadyRated = product?.ratings?.find((rating) => rating.postedBy.toString() === _id.toString())
+
+    if (alreadyRated) {
+      const updateRating = await Product.updateOne({
+        ratings: {
+          $elemMatch: alreadyRated,
+        }
+      }, {
+        $set: { 'ratings.$.star': star, 'ratings.$.comment': comment }
+      }, {
+        new: true
+      })
+    } else {
+      const rateProduct = await Product.findByIdAndUpdate(productId, {
+        $push: {
+          ratings: {
+            star: star,
+            comment: comment,
+            postedBy: _id
+          }
+        }
+      }, { new: true })
+    }
+
+    const allRatings = await Product.findById(productId)
+    const totalNumberOfRatings = allRatings.ratings.length
+
+    const sumOfAllRatings = allRatings.ratings
+      .map(rating => rating.star)
+      .reduce((prev, curr) => prev + curr, 0)
+
+    const averageRating = (sumOfAllRatings / totalNumberOfRatings).toFixed(1)
+    const modifiedProduct = await Product.findByIdAndUpdate(productId, {
+      totalRating: averageRating
+    }, { new: true })
+
+    res.json({product: modifiedProduct})
+  } catch (error) {
+    console.log(error)
+    throw new Error(error)
+  }
+})
+
 module.exports = {
   createProduct,
   getProduct,
   getProducts,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  addToWishlist,
+  rating
 }
