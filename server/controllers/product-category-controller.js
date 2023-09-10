@@ -18,7 +18,6 @@ const updateCategory = asyncHandler(async (req, res) => {
     const { id } = req.params
     validateMongoDBId(id)
 
-
     const category = await ProductCategory.findOneAndUpdate({ _id: id }, req.body, {
       new: true
     })

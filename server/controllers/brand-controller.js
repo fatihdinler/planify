@@ -18,7 +18,6 @@ const updateBrand = asyncHandler(async (req, res) => {
     const { id } = req.params
     validateMongoDBId(id)
 
-
     const brand = await Brand.findOneAndUpdate({ _id: id }, req.body, {
       new: true
     })
