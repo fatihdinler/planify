@@ -257,6 +257,10 @@ const forgotPasswordToken = asyncHandler(async (req, res) => {
 })
 
 const resetPassword = asyncHandler(async (req, res) => {
+
+  console.log('OMER BRANCHİ')
+
+
   const { password } = req.body
   const { token } = req.params
 
