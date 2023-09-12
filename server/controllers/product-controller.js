@@ -2,6 +2,9 @@ const Product = require('../models/product-model')
 const User = require('../models/user-model')
 const asyncHandler = require('express-async-handler')
 const { slugProductController } = require('../utils/slugify')
+const validateMongoDBId = require('../utils/validate-mongodb-id')
+const cloudinaryUploadImage = require('../utils/cloudinary')
+const fs = require('fs')
 
 const createProduct = asyncHandler(async (req, res) => {
   try {
@@ -198,9 +201,40 @@ const rating = asyncHandler(async (req, res) => {
       totalRating: averageRating
     }, { new: true })
 
-    res.json({product: modifiedProduct})
+    res.json({ product: modifiedProduct })
   } catch (error) {
     console.log(error)
+    throw new Error(error)
+  }
+})
+
+const uploadImages = asyncHandler(async (req, res) => {
+  const { id } = req.params
+  validateMongoDBId(id)
+
+  try {
+    const uploader = path => cloudinaryUploadImage(path, 'images')
+    const urls = []
+    const files = req.files
+
+    for (const file of files) {
+      const { path } = file
+      const newPath = await uploader(path)
+      urls.push(newPath)
+      fs.unlinkSync(path)
+    }
+
+    console.log(urls)
+
+    const findProduct = await Product.findByIdAndUpdate(id, {
+      images: urls.map(file => {
+        return file
+      })
+    }, { new: true })
+
+    res.status(200).json({ success: true, findProduct })
+
+  } catch (error) {
     throw new Error(error)
   }
 })
@@ -212,5 +246,6 @@ module.exports = {
   updateProduct,
   deleteProduct,
   addToWishlist,
-  rating
+  rating,
+  uploadImages
 }
