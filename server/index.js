@@ -13,6 +13,7 @@ const blogRouter = require('./routes/blog-route')
 const productCategoryRoute = require('./routes/product-category-route')
 const blogCategoryRouter = require('./routes/blog-category-route')
 const brandRouter = require('./routes/brand-route')
+const couponRouter = require('./routes/coupon-route')
 
 
 dbConnect()
@@ -28,6 +29,7 @@ app.use('/api/blog', blogRouter)
 app.use('/api/product-category', productCategoryRoute)
 app.use('/api/blog-category', blogCategoryRouter)
 app.use('/api/brand', brandRouter)
+app.use('/api/coupon', couponRouter)
 
 // Use error-handler middlewares after the routes
 app.use(notFound)
