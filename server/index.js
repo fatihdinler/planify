@@ -15,7 +15,6 @@ const blogCategoryRouter = require('./routes/blog-category-route')
 const brandRouter = require('./routes/brand-route')
 const couponRouter = require('./routes/coupon-route')
 
-
 dbConnect()
 
 app.use(morgan('dev'))
@@ -36,5 +35,8 @@ app.use(notFound)
 app.use(errorHandler)
 
 app.listen(PORT, () => {
+	if (!process.env.PORT) {
+		console.warn(`>>> .env file not found or there was an error loading it`)
+	}
 	console.log(`>>> server is running at http://localhost:${PORT}`)
 })

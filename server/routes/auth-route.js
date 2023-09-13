@@ -13,7 +13,10 @@ const {
   logoutUser,
   updatePassword,
   forgotPasswordToken,
-  resetPassword
+  resetPassword,
+  loginAdmin,
+  getWishlist,
+  saveAddress
 } = require('../controllers/user-controller')
 const { authMiddleware, isAdmin } = require('../middlewares/auth-middleware')
 
@@ -24,11 +27,17 @@ router.put('/update-password', authMiddleware, updatePassword)
 
 router.post('/login', loginUser)
 router.get('/logout', logoutUser)
+router.post('/login-admin', loginAdmin)
+
 router.get('/get-users', getUsers)
 router.get('/refresh', handleRefreshToken)
+router.get('/wishlist', authMiddleware, getWishlist)
+
 router.get('/:id', authMiddleware, isAdmin, getUser)
 router.delete('/:id', deleteUser)
+
 router.put('/edit-user', authMiddleware, updateUser)
+router.put('/save-address', authMiddleware, saveAddress)
 router.put('/block-user/:id', authMiddleware, isAdmin, blockUser)
 router.put('/unblock-user/:id', authMiddleware, isAdmin, unBlockUser)
 

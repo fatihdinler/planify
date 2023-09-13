@@ -281,6 +281,78 @@ const resetPassword = asyncHandler(async (req, res) => {
   }
 })
 
+const loginAdmin = asyncHandler(async (req, res) => {
+  const { email, password } = req.body
+
+  // Check if user exists
+  const adminUser = await User.findOne({ email: email })
+
+  if (adminUser.role !== 'admin') {
+    throw new Error('This user is not an admin user. Please check the user role of the related user.')
+  }
+
+  if (adminUser) {
+    const isPasswordMatched = await adminUser.isPasswordMatched(password)
+    const refreshToken = await generateRefreshToken(adminUser?._id)
+    const updatedUser = await User.findByIdAndUpdate(adminUser?._id, { refreshToken: refreshToken }, { new: true })
+
+    if (isPasswordMatched) {
+      res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        maxAge: 3 * 24 * 60 * 60 * 1000
+      })
+      res.status(200).json({
+        success: true,
+        id: adminUser?._id,
+        firstname: adminUser?.firstname,
+        lastname: adminUser?.lastname,
+        email: adminUser?.email,
+        mobile: adminUser?.mobile,
+        token: generateToken(adminUser?._id),
+        statusCode: 200
+      })
+    } else {
+      res.status(401).json({ success: false, message: 'Incorrect password', statusCode: 401 })
+    }
+  } else {
+    res.status(404).json({ success: false, message: 'User not found', statusCode: 404, })
+  }
+})
+
+const getWishlist = asyncHandler(async (req, res) => {
+  const { _id } = req.user
+  try {
+    const user = await User.findById(_id).populate('wishList')
+    if (user) {
+      res.status(200).json({ success: true, user })
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+const saveAddress = asyncHandler(async (req, res, next) => {
+  const { _id } = req.user
+  validateMongoDBId(_id)
+
+  try {
+    const { address } = req.body
+
+    const user = await User.findByIdAndUpdate(_id, {
+      address: address
+    }, { new: true })
+
+    if (user) {
+      res.status(200).json({ success: true, message: 'Address is Saved Successfully', user })
+    } else {
+      res.status(500).json({ success: false, message: 'Something went wrong while saving the address' })
+    }
+
+  } catch (error) {
+    throw new Error(error)
+  }
+
+})
 
 module.exports = {
   createUser,
@@ -295,5 +367,8 @@ module.exports = {
   logoutUser,
   updatePassword,
   forgotPasswordToken,
-  resetPassword
+  resetPassword,
+  loginAdmin,
+  getWishlist,
+  saveAddress,
 }
