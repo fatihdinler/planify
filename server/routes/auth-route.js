@@ -17,7 +17,9 @@ const {
   loginAdmin,
   getWishlist,
   saveAddress,
-  userCart
+  userCart,
+  getUserCart,
+  emptyCart
 } = require('../controllers/user-controller')
 const { authMiddleware, isAdmin } = require('../middlewares/auth-middleware')
 
@@ -30,6 +32,8 @@ router.post('/login', loginUser)
 router.get('/logout', logoutUser)
 router.post('/login-admin', loginAdmin)
 router.post('/cart', authMiddleware, userCart) // To use req.user, need to pass authMiddleware.
+router.get('/get-user-cart', authMiddleware, getUserCart)
+router.delete('/empty-cart', authMiddleware, emptyCart)
 
 router.get('/get-users', getUsers)
 router.get('/refresh', handleRefreshToken)
