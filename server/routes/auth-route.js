@@ -19,7 +19,10 @@ const {
   saveAddress,
   userCart,
   getUserCart,
-  emptyCart
+  emptyCart,
+  applyCoupon,
+  createOrder,
+  getOrders,
 } = require('../controllers/user-controller')
 const { authMiddleware, isAdmin } = require('../middlewares/auth-middleware')
 
@@ -32,10 +35,13 @@ router.post('/login', loginUser)
 router.get('/logout', logoutUser)
 router.post('/login-admin', loginAdmin)
 router.post('/cart', authMiddleware, userCart) // To use req.user, need to pass authMiddleware.
+router.post('/cart/apply-coupon', authMiddleware, applyCoupon)
+router.post('/cart/cash-order', authMiddleware, createOrder)
 router.get('/get-user-cart', authMiddleware, getUserCart)
 router.delete('/empty-cart', authMiddleware, emptyCart)
 
 router.get('/get-users', getUsers)
+router.get('/cart/get-orders', authMiddleware, getOrders)
 router.get('/refresh', handleRefreshToken)
 router.get('/wishlist', authMiddleware, getWishlist)
 

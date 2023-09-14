@@ -1,9 +1,12 @@
 const User = require('../models/user-model')
 const Product = require('../models/product-model')
 const Cart = require('../models/cart-model')
+const Coupon = require('../models/coupon-model')
+const Order = require('../models/order-model')
 const asyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
+const uniqid = require('uniqid')
 const { generateToken } = require('../config/jwt')
 const { generateRefreshToken } = require('../config/refresh-token')
 const validateMongoDBId = require('../utils/validate-mongodb-id')
@@ -425,6 +428,96 @@ const emptyCart = asyncHandler(async (req, res) => {
   }
 })
 
+const applyCoupon = asyncHandler(async (req, res) => {
+  const { coupon } = req.body
+  const { _id } = req.user
+  validateMongoDBId(_id)
+
+  const validCoupon = await Coupon.findOne({ name: coupon })
+  if (validCoupon === null) {
+    throw new Error('This coupon is not a valid coupon !')
+  }
+
+  const user = await User.findOne({ _id })
+  let { cartTotal } = await Cart.findOne({
+    orderby: user._id,
+  }).populate('products.product')
+
+  let totalAfterDiscount = (cartTotal - (cartTotal * validCoupon.discount) / 100).toFixed(2)
+
+  await Cart.findOneAndUpdate(
+    { orderby: user._id },
+    { totalAfterDiscount },
+    { new: true }
+  )
+  res.json(totalAfterDiscount)
+})
+
+const createOrder = asyncHandler(async (req, res) => {
+  const { COD, couponApplied } = req.body
+  const { _id } = req.user
+
+  try {
+    if (!COD) {
+      throw new Error('Create cash order failed')
+    }
+    const user = await User.findById(_id)
+    validateMongoDBId(_id)
+
+    let userCart = await Cart.findOne({ orderby: user._id })
+    let finalAmount = 0
+
+    if (couponApplied && userCart.totalAfterDiscount) {
+      finalAmount = userCart.totalAfterDiscount
+    } else {
+      finalAmount = userCart.cartTotal
+    }
+
+    let order = await new Order({
+      products: userCart.products,
+      paymentIntent: {
+        id: uniqid(),
+        method: 'COD',
+        amount: finalAmount,
+        status: 'Cash on Delivery',
+        created: Date.now(),
+        currency: 'usd',
+      },
+      orderby: user._id,
+      orderStatus: 'Cash on Delivery'
+    }).save()
+
+    let update = userCart.products.map((item) => {
+      return {
+        updateOne: {
+          filter: { _id: item.product._id },
+          update: { $inc: { quantity: -item.count, sold: + item.count } },
+        },
+      }
+    })
+
+    const updated = await Product.bulkWrite(update, {})
+
+    res.json({ message: 'success' })
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+const getOrders = asyncHandler(async (req, res) => {
+  const { _id } = req.user
+  validateMongoDBId(_id)
+
+  try {
+    const orders = await Order.findOne({ orderby: _id }).populate('products.product')
+    if (orders) {
+      res.status(200).json({success: true, orders})
+    }
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
 module.exports = {
   createUser,
   loginUser,
@@ -444,5 +537,8 @@ module.exports = {
   saveAddress,
   userCart,
   getUserCart,
-  emptyCart
+  emptyCart,
+  applyCoupon,
+  createOrder,
+  getOrders
 }
