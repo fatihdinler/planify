@@ -23,6 +23,7 @@ const {
   applyCoupon,
   createOrder,
   getOrders,
+  updateOrderStatus,
 } = require('../controllers/user-controller')
 const { authMiddleware, isAdmin } = require('../middlewares/auth-middleware')
 
@@ -30,6 +31,7 @@ router.post('/register', createUser)
 router.post('/forgot-password-token', forgotPasswordToken)
 router.put('/reset-password/:token', resetPassword)
 router.put('/update-password', authMiddleware, updatePassword)
+router.put('/order/update-order-status/:id', authMiddleware, isAdmin, updateOrderStatus )
 
 router.post('/login', loginUser)
 router.get('/logout', logoutUser)
