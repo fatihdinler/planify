@@ -9,11 +9,25 @@ client/mobile/yarn.lock
 client/mobile/package-lock.json
 client/mobile/.env
 
-# web
-client/web/node_modules
-client/web/package-lock.json
-client/web/yarn.lock
-client/web/.env
+# client-web
+client-web/node_modules
+client-web/package-lock.json
+client-web/yarn.lock
+client-web/.env
+client-web/node_modules
+client-web/.pnp
+client-web/.pnp.js
+client-web/coverage
+client-web/build
+client-web/.DS_Store
+client-web/.env.local
+client-web/.env.development.local
+client-web/.env.test.local
+client-web/.env.production.local
+client-web/npm-debug.log*
+client-web/yarn-debug.log*
+client-web/yarn-error.log*
+client-web/dist
 
 # server
 server/node_modules
