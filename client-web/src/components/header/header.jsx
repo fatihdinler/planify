@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { Text, Heading, Input, InputRightElement, InputGroup, Image, Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react'
+import { Text, Heading, Input, InputRightElement, InputGroup, Image, Menu, MenuButton, MenuList, MenuItem, Button, Flex } from '@chakra-ui/react'
 import { BsSearch } from 'react-icons/bs'
 
 const Header = () => {
@@ -34,19 +34,25 @@ const Header = () => {
               </Heading>
             </div>
 
-            <div className='col-5'>
+            <Flex className='col-5' alignItems='center'>
               <InputGroup className='input-group'>
                 <Input
                   type='tel'
-                  className='bg-white py-2'
+                  className='bg-white'
                   placeholder='Search Product'
                   size='md'
                 />
-                <InputRightElement pointerEvents='none' className='input-group-text'>
-                  <BsSearch color='gray.300' />
+                <InputRightElement>
+                  <Button
+                    size='md'
+                    bg='teal'
+                    color='white'
+                  >
+                    <BsSearch color='gray.300' />
+                  </Button>
                 </InputRightElement>
               </InputGroup>
-            </div>
+            </Flex>
 
             <div className='col-5 align-items-center'>
               <div className='header-upper-links d-flex align-items-center justify-content-between'>
