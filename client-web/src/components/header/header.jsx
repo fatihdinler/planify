@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { Text, Heading, Input, InputRightElement, InputGroup, Image } from '@chakra-ui/react'
+import { Text, Heading, Input, InputRightElement, InputGroup, Image, Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react'
 import { BsSearch } from 'react-icons/bs'
 
 const Header = () => {
@@ -22,7 +22,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <div className='header-upper py-3'>
+      <header className='header-upper py-3'>
         <div className='container-xxl'>
           <div className='row align-items-center py-1'>
             <div className='col-2'>
@@ -90,7 +90,51 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </div>
+      </header>
+      <header className='header-bottom py-3'>
+        <div className='container-xxl'>
+          <div className='row'>
+            <div className='col-12'>
+              <div className='menu-bottom d-flex align-items-center gap-30'>
+                <div>
+                  <Menu className='dropdown'>
+                    <MenuButton
+                      as={Button}
+                      className='btn dropdown-toggle d-flex flex-row align-items-center gap-15'>
+                      <span>Shop Categories</span>
+                    </MenuButton>
+                    <MenuList>
+                      <Link to='/contact' className='d-flex'>
+                        <MenuItem>
+                          Action
+                        </MenuItem>
+                      </Link>
+                      <Link to='/contact' className='d-flex'>
+                        <MenuItem>
+                          Action
+                        </MenuItem>
+                      </Link>
+                      <Link to='/contact' className='d-flex'>
+                        <MenuItem>
+                          Action
+                        </MenuItem>
+                      </Link>
+                    </MenuList>
+                  </Menu>
+                </div>
+                <div className='menu-links'>
+                  <div className='d-flex align-items-center gap-15'>
+                    <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/'>Our Store</NavLink>
+                    <NavLink to='/'>Blogs</NavLink>
+                    <NavLink to='/contact'>Contact</NavLink>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
     </div>
   )
 }

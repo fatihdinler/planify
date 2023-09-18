@@ -8,6 +8,7 @@
   --color-black: #131921;
   --color-gray: #3B4149;
   --color-orange: #FEBD69;
+  --color-bold-gray: #232F3E;
 }
 
 body {
@@ -25,6 +26,10 @@ a {
 
 .gap-15 {
   gap: 15px;
+}
+
+.gap-30 {
+  gap: 30px;
 }
 
 @import url(header.css);
