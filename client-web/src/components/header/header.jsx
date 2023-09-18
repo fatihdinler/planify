@@ -9,11 +9,13 @@ const Header = () => {
       <header className='header-top-strip py-3'>
         <div className='container-xxl'>
           <div className='row'>
+
             <div className='col-6'>
               <Text className='text-white mb-0'>
                 Free Shipping Over $100 & Free Returns
               </Text>
             </div>
+
             <div className='col-6'>
               <Text className='text-end text-white mb-0'>
                 Hotline: <a className='text-white' href='tel:+90 546 881 24 26'>(+90) 538 853 38 95</a>
@@ -22,14 +24,16 @@ const Header = () => {
           </div>
         </div>
       </header>
+
       <header className='header-upper py-3'>
         <div className='container-xxl'>
           <div className='row align-items-center py-1'>
             <div className='col-2'>
               <Heading as='h2' size='xl' className='text-white'>
-                <Link>DigiShop</Link>
+                <Link to='/'>DigiShop</Link>
               </Heading>
             </div>
+
             <div className='col-5'>
               <InputGroup className='input-group'>
                 <Input
@@ -43,6 +47,7 @@ const Header = () => {
                 </InputRightElement>
               </InputGroup>
             </div>
+
             <div className='col-5 align-items-center'>
               <div className='header-upper-links d-flex align-items-center justify-content-between'>
                 <div>
@@ -91,6 +96,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+
       <header className='header-bottom py-3'>
         <div className='container-xxl'>
           <div className='row'>
@@ -122,6 +128,7 @@ const Header = () => {
                     </MenuList>
                   </Menu>
                 </div>
+
                 <div className='menu-links'>
                   <div className='d-flex align-items-center gap-15'>
                     <NavLink to='/'>Home</NavLink>
@@ -130,6 +137,7 @@ const Header = () => {
                     <NavLink to='/contact'>Contact</NavLink>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
