@@ -47,6 +47,11 @@ const Header = () => {
                     size='md'
                     bg='teal'
                     color='white'
+                    _hover={{
+                      backgroundColor: 'var(--color-orange)',
+                      color: 'white',
+                      borderColor: 'var(--color-orange)'
+                    }}
                   >
                     <BsSearch color='gray.300' />
                   </Button>

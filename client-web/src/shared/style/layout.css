@@ -20,6 +20,13 @@ a {
   display: inline-block;
 }
 
+.button {
+  background-color: var(--color-bold-gray);
+  color: white;
+  font-size: 14px;
+  padding: 13px 33px;
+}
+
 .gap-10 {
   gap: 10px;
 }

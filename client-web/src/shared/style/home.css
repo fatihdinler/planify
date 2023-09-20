@@ -1,9 +1,7 @@
-.main-banner {
-
-}
+.main-banner {}
 
 .main-banner-content {
-  top: 15%;
+  top: 10%;
   left: 5%;
 }
 
@@ -18,10 +16,50 @@
 }
 
 .main-banner-content h5 {
-  font-size: 52px;
-  font-weight: 500;
+  font-size: 42px;
   line-height: 64px;
-  margin: 0 0 12px;
   letter-spacing: -2px;
+  font-weight: 500;
   text-transform: none;
+}
+
+.main-banner-content p {
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0.4px;
+  color: var(--color-black);
+}
+
+.small-banner {
+  width: 49%;
+}
+
+.small-banner-content {
+  top: 10%;
+  left: 5%;
+}
+
+.small-banner-content h4 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #BF4800;
+  margin: 0 0 12px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.small-banner-content h5 {
+  font-size: 22px;
+  line-height: 34px;
+  letter-spacing: -2px;
+  font-weight: 500;
+  text-transform: none;
+}
+
+.small-banner-content p {
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.4px;
+  color: var(--color-black);
 }
