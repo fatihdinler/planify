@@ -109,3 +109,11 @@
 .categories > div:nth-child(7) {
   border-right: 1px solid var(--color-white-divider);
 }
+
+.marquee-wrapper {
+
+}
+
+.marquee-inner-wrapper {
+  
+}
