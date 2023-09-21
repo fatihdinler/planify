@@ -1,0 +1,29 @@
+.blog-card {
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+  transition: box-shadow 0.3s ease; /* Geçiş efekti ekleyin */
+}
+
+.blog-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); 
+}
+
+.blog-content {
+  padding: 15px;
+}
+
+.blog-content .date {
+  font-size: 13px;
+  line-height: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--color-777777);
+  padding: 0;
+}
+
+.blog-content .description {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 200;
+}
