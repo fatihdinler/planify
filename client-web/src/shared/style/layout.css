@@ -38,6 +38,10 @@ a {
   padding: 13px 33px;
 }
 
+.gap-5 {
+  gap: 5px;
+}
+
 .gap-10 {
   gap: 10px;
 }
@@ -55,3 +59,4 @@ a {
 @import url(home.css);
 @import url(blog-card.css);
 @import url(product-card.css);
+@import url(special-product-card.css);

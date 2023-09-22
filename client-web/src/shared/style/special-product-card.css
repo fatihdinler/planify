@@ -1,0 +1,16 @@
+.special-product-card {
+  padding: 20px 20px;
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+  transition: box-shadow 0.3s ease;
+}
+
+.special-product-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+}
+
+.discount-till .remaining-day {
+  font-weight: bold;
+  white-space: nowrap;
+}

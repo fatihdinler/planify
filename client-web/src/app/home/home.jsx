@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Text, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { FastMarquee, BlogCard, ProductCard } from '../../components'
+import { FastMarquee, BlogCard, ProductCard, SpecialProductCard } from '../../components'
 
 const Home = () => {
   return (
@@ -228,6 +228,41 @@ const Home = () => {
         </div>
       </section>
 
+      <section className='featured-wrapper home-wrapper-secondary py-5 '>
+        <div className='container-xxl'>
+          <div className='row'>
+            <div className='col-12'>
+              <Text as='h3' className='section-heading'>
+                Featured Collections
+              </Text>
+            </div>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        </div>
+      </section>
+
+      <section className='special-wrapper home-wrapper-secondary py-5'>
+        <div className='container-xxl'>
+          <div className='row'>
+            <div className='col-12'>
+              <Text as='h3' className='section-heading'>
+                Special Products
+              </Text>
+            </div>
+          </div>
+
+          <div className='row'>
+            <SpecialProductCard />
+            <SpecialProductCard />
+            <SpecialProductCard />
+            <SpecialProductCard />
+          </div>
+        </div>
+      </section>
+
       <section className='marquee-wrapper py-5'>
         <div className='container-xxl'>
           <div className='row'>
@@ -243,24 +278,8 @@ const Home = () => {
       <section className='blog-wrapper home-wrapper-secondary py-5 '>
         <div className='container-xxl'>
           <div className='row'>
-            <div className='col-12 section-heading'>
-              <Text as='h3'>
-                Featured Collections
-              </Text>
-            </div>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </div>
-        </div>
-      </section>
-
-      <section className='blog-wrapper home-wrapper-secondary py-5 '>
-        <div className='container-xxl'>
-          <div className='row'>
-            <div className='col-12 section-heading'>
-              <Text as='h3'>
+            <div className='col-12'>
+              <Text as='h3' className='section-heading'>
                 Our Latest Blogs
               </Text>
             </div>
