@@ -4,11 +4,11 @@
 .DS_Store
 
 #mobile
-client/mobile/.expo
-client/mobile/node_modules
-client/mobile/yarn.lock
-client/mobile/package-lock.json
-client/mobile/.env
+client-mobile/.expo
+client-mobile/node_modules
+client-mobile/yarn.lock
+client-mobile/package-lock.json
+client-mobile/.env
 
 # client-web
 client-web/node_modules
