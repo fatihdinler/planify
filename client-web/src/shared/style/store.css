@@ -67,3 +67,17 @@
   border-bottom: 1px solid #ededed;
   margin-top: 20px;
 }
+
+.filter-sort-grid {
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+}
+
+.grid img {
+  width: 35px;
+  height: 35px;
+  background-color: #f2f2f2;
+  padding: 8px;
+  border-radius: 5px;
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Breadcrumb, Helmet } from '../../components'
-import { Text, Checkbox, Stack, Input, InputGroup, InputLeftAddon, Image } from '@chakra-ui/react'
+import { Text, Checkbox, Stack, Input, InputGroup, InputLeftAddon, Image, Select } from '@chakra-ui/react'
 import ReactStars from 'react-rating-stars-component'
 
 const Store = () => {
@@ -50,12 +50,12 @@ const Store = () => {
                   <Text as='h5' className='sub-title'>Price</Text>
                   <Stack direction='row'>
                     <InputGroup size='sm'>
-                      <InputLeftAddon children='$' />
+                      <InputLeftAddon children='₺' />
                       <Input type='number' placeholder='From' />
                     </InputGroup>
 
                     <InputGroup size='sm'>
-                      <InputLeftAddon children='$' />
+                      <InputLeftAddon children='₺' />
                       <Input type='number' placeholder='To' />
                     </InputGroup>
                   </Stack>
@@ -174,8 +174,53 @@ const Store = () => {
                 </div>
               </div>
             </div>
-            <div className='col-9'>
 
+            <div className='col-9'>
+              <div className='filter-sort-grid rounded-3 mb-4'>
+                <div className='d-flex justify-content-between align-items-center'>
+                  <div className='d-flex align-items-center gap-10'>
+                    <Text
+                      as='p'
+                      className='mb-0 d-block' style={{width: '100px'}}>Sort By</Text>
+                    <Select placeholder='Select option'>
+                      <option value='option1'>Featured</option>
+                      <option value='option2'>Best Selling</option>
+                      <option value='option3'>Alphabetically A, Z</option>
+                      <option value='option3'>Alphabetically Z, A</option>
+                      <option value='option3'>Price, Low to High</option>
+                      <option value='option3'>Price, High to Low</option>
+                      <option value='option3'>Date, New to Old</option>
+                      <option value='option3'>Date, Old to New</option>
+                    </Select>
+                  </div>
+
+                  <div className='d-flex align-items-center gap-10'>
+                    <Text as='p' className='total-product-counter mb-0'>21 Products</Text>
+                    <div className='grid d-flex gap-10 align-items-center'>
+                      <Image
+                        src='images/gr4.svg'
+                        alt='grid'
+                        className='d-block img-fluid'
+                      />
+                      <Image
+                        src='images/gr3.svg'
+                        alt='grid'
+                        className='d-block img-fluid'
+                      />
+                      <Image
+                        src='images/gr2.svg'
+                        alt='grid'
+                        className='d-block img-fluid'
+                      />
+                      <Image
+                        src='images/gr.svg'
+                        alt='grid'
+                        className='d-block img-fluid'
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
