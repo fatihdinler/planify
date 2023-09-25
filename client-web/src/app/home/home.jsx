@@ -6,7 +6,7 @@ import { FastMarquee, BlogCard, ProductCard, SpecialProductCard, Helmet } from '
 const Home = () => {
   return (
     <div>
-      <Helmet title='DigiShop'/>
+      <Helmet title='DigiShop' />
       <section className='home-wrapper-primary py-5'>
         <div className='container-xxl'>
           <div className='row'>
@@ -368,10 +368,20 @@ const Home = () => {
                 Our Latest Blogs
               </Text>
             </div>
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
+            <div className='row'>
+              <div className='col-3'>
+                <BlogCard />
+              </div>
+              <div className='col-3'>
+                <BlogCard />
+              </div>
+              <div className='col-3'>
+                <BlogCard />
+              </div>
+              <div className='col-3'>
+                <BlogCard />
+              </div>
+            </div>
           </div>
         </div>
       </section>
