@@ -1,9 +1,16 @@
-import React from 'react'
-import { Breadcrumb, Helmet } from '../../components'
+import React, { useState } from 'react'
+import { Breadcrumb, Helmet, ProductCard } from '../../components'
 import { Text, Checkbox, Stack, Input, InputGroup, InputLeftAddon, Image, Select } from '@chakra-ui/react'
 import ReactStars from 'react-rating-stars-component'
 
 const Store = () => {
+
+  const [grid, setGrid] = useState(4)
+
+  const onGridChange = (value) => {
+    setGrid(value)
+  }
+
   return (
     <div>
       <Helmet title='Our Store' />
@@ -181,7 +188,7 @@ const Store = () => {
                   <div className='d-flex align-items-center gap-10'>
                     <Text
                       as='p'
-                      className='mb-0 d-block' style={{width: '100px'}}>Sort By</Text>
+                      className='mb-0 d-block' style={{ width: '100px' }}>Sort By</Text>
                     <Select placeholder='Select option'>
                       <option value='option1'>Featured</option>
                       <option value='option2'>Best Selling</option>
@@ -201,24 +208,36 @@ const Store = () => {
                         src='images/gr4.svg'
                         alt='grid'
                         className='d-block img-fluid'
+                        onClick={() => setGrid(3)}
                       />
                       <Image
                         src='images/gr3.svg'
                         alt='grid'
                         className='d-block img-fluid'
+                        onClick={() => setGrid(4)}
                       />
                       <Image
                         src='images/gr2.svg'
                         alt='grid'
                         className='d-block img-fluid'
+                        onClick={() => setGrid(6)}
                       />
                       <Image
                         src='images/gr.svg'
                         alt='grid'
                         className='d-block img-fluid'
+                        onClick={() => setGrid(12)}
                       />
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div className='products-list pb-5'>
+                <div className='d-flex gap-10 flex-wrap'>
+                  <ProductCard grid={grid} />
+                  <ProductCard grid={grid} />
+                  <ProductCard grid={grid} />
                 </div>
               </div>
             </div>

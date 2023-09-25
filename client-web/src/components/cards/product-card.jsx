@@ -1,11 +1,14 @@
 import React from 'react'
 import { Image, Text, Button } from '@chakra-ui/react'
 import ReactStars from 'react-rating-stars-component'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-const ProductCard = () => {
+const ProductCard = ({grid}) => {
+
+  const location = useLocation()
+  console.log(location)
   return (
-    <div className='col-3'>
+    <div className={`${location.pathname === '/store' ? `gr-${grid}` : 'col-3'}`}>
       <div className='product-card position-relative rounded-5'>
         <div className='wishlist-icon position-absolute '>
           <Link>

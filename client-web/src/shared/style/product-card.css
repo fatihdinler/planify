@@ -11,7 +11,7 @@
 }
 
 .product-card .product-image {
-  height: 270px;
+  /* height: 270px; */
 }
 
 .product-card .product-image img {
@@ -64,4 +64,20 @@
 .wishlist-icon {
   top: 3%;
   right: 15px;
+}
+
+.gr-12 {
+  width: 100%;
+}
+
+.gr-6 {
+  width: 48%;
+}
+
+.gr-4 {
+  width: 32%;
+}
+
+.gr-3 {
+  width: 24%;
 }
