@@ -1,0 +1,26 @@
+.contact-inner-wrapper {
+  padding: 30px 20px;
+  background-color: white;
+  gap: 15px;
+  box-shadow: 0 0 10px #0000001a;
+}
+
+.contact-inner-wrapper > div {
+  width: 48%;
+}
+
+.contact-title {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 35px;
+  text-align: left;
+  margin-top: 0;
+}
+
+.form-controller > div {
+  margin-top: 25px;
+}
+
+.map {
+  box-shadow: 0 0 10px #0000001a;
+}
