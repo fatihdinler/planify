@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Breadcrumb, Helmet, ProductCard } from '../../components'
+import { Breadcrumb, Helmet, ProductCard, Color } from '../../components'
 import { Text, Checkbox, Stack, Input, InputGroup, InputLeftAddon, Image, Select } from '@chakra-ui/react'
 import ReactStars from 'react-rating-stars-component'
 
@@ -69,26 +69,25 @@ const Store = () => {
 
                   <Text as='h5' className='sub-title'>Colors</Text>
                   <div>
-                    <ul className='colors ps-0'>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                    </ul>
+                    <Color
+                      colors={[
+                        'red',
+                        'yellow',
+                        'purple',
+                        'blue',
+                        'gray',
+                        'black',
+                        'green',
+                        'orange',
+                        'pink',
+                        'brown',
+                        'cyan',
+                        'magenta',
+                        'lime',
+                        'teal',
+                        'indigo',
+                      ]}
+                    />
                   </div>
 
                   <Text as='h5' className='sub-title'>Size</Text>

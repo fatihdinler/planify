@@ -1,0 +1,39 @@
+.compare-product-card {
+  padding: 20px 15px;
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+  transition: box-shadow 0.3s ease;
+}
+
+.compare-product-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);   
+}
+
+.compare-product-card .cross{
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.compare-product-card h5 {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #1c1c1b;
+}
+
+.compare-product-card h6 {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 300;
+}
+
+.compare-product-card .product-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+  border-top: 1px solid #f5f5f7;
+}

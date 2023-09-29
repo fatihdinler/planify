@@ -3,7 +3,8 @@ import {
   About,
   Contact,
   Store,
-  Blog
+  Blog,
+  CompareProduct
 } from './app'
 
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
   { key: 'contact', path: '/contact', component: <Contact /> },
   { key: 'store', path: '/store', component: <Store /> },
   { key: 'blog', path: '/blog', component: <Blog /> },
+  { key: 'compare-product', path: '/compare-product', component: <CompareProduct /> },
 ]
 
 export default routes
