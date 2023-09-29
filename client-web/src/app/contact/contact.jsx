@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Helmet, Breadcrumb } from '../../components'
-import { Text, FormControl, FormLabel, Input, FormHelperText, Textarea, Button } from '@chakra-ui/react'
-
+import { Text, FormControl, FormLabel, Input, FormHelperText, Textarea, Button, Image } from '@chakra-ui/react'
+import { HomeIcon, MailIcon, PhoneIcon, InformationIcon } from '../../components/icons/icons'
 const Contact = () => {
   const [form, setForm] = useState({
     name: '',
@@ -93,13 +93,33 @@ const Contact = () => {
                         colorScheme='teal'
                         variant='solid'
                         className='w-100'>
-                          Submit
+                        Submit
                       </Button>
                     </div>
                   </FormControl>
                 </div>
                 <div>
                   <Text as='h3' className='contact-title'>Get in touch with us</Text>
+                  <div>
+                    <ul className='ps-0'>
+                      <li className='mt-4 d-flex gap-15 align-items-center'>
+                        <HomeIcon />
+                        <Text className='mb-0'>44 E. West Street Ashland, OH 44805</Text>
+                      </li>
+                      <li className='mt-4 d-flex gap-15 align-items-center'>
+                        <PhoneIcon />
+                        <Text className='mb-0'> (+90) 538 853 38 95</Text>
+                      </li>
+                      <li className='mt-4 d-flex gap-15 align-items-center'>
+                        <MailIcon />
+                        <Text className='mb-0'>fatihdinler458@gmail.com</Text>
+                      </li>
+                      <li className='mt-4 d-flex gap-15 align-items-center'>
+                        <InformationIcon />
+                        <Text className='mb-0'>Monday - Friday, 10 AM - 8 PM</Text>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
