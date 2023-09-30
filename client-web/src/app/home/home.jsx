@@ -2,6 +2,19 @@ import React from 'react'
 import { Image, Text, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { FastMarquee, BlogCard, ProductCard, SpecialProductCard, Helmet } from '../../components'
+import mainbanner1 from '../../shared/images/main-banner-1.jpg'
+import catbanner1 from '../../shared/images/catbanner-01.jpg'
+import catbanner2 from '../../shared/images/catbanner-02.jpg'
+import catbanner3 from '../../shared/images/catbanner-03.jpg'
+import catbanner4 from '../../shared/images/catbanner-04.jpg'
+import service from '../../shared/images/service.png'
+import service2 from '../../shared/images/service-02.png'
+import service3 from '../../shared/images/service-03.png'
+import service4 from '../../shared/images/service-04.png'
+import service5 from '../../shared/images/service-05.png'
+import camera from '../../shared/images/camera.jpg'
+import tv from '../../shared/images/tv.jpg'
+import headphone from '../../shared/images/headphone.jpg'
 
 const Home = () => {
   return (
@@ -14,7 +27,7 @@ const Home = () => {
             <div className='col-6'>
               <div className='main-banner position-relative'>
                 <Image
-                  src='images/main-banner-1.jpg'
+                  src={mainbanner1}
                   alt='main banner'
                   className='img-fluid rounded-5'
                 />
@@ -45,7 +58,7 @@ const Home = () => {
               <div className='d-flex flex-wrap gap-10 justify-content-between align-items-center'>
                 <div className='small-banner position-relative'>
                   <Image
-                    src='images/catbanner-01.jpg'
+                    src={catbanner1}
                     alt='main banner'
                     className='img-fluid rounded-5'
                   />
@@ -60,7 +73,8 @@ const Home = () => {
 
                 <div className='small-banner position-relative'>
                   <Image
-                    src='images/catbanner-02.jpg'
+                    src={catbanner2}
+
                     alt='main banner'
                     className='img-fluid rounded-5'
                   />
@@ -75,7 +89,7 @@ const Home = () => {
 
                 <div className='small-banner position-relative'>
                   <Image
-                    src='images/catbanner-03.jpg'
+                    src={catbanner3}
                     alt='main banner'
                     className='img-fluid rounded-5'
                   />
@@ -90,7 +104,7 @@ const Home = () => {
 
                 <div className='small-banner position-relative'>
                   <Image
-                    src='images/catbanner-04.jpg'
+                    src={catbanner4}
                     alt='main banner'
                     className='img-fluid rounded-5'
                   />
@@ -114,114 +128,39 @@ const Home = () => {
             <div className='col-12'>
               <div className='services d-flex align-items-center justify-content-between '>
                 <div className='d-flex align-items-center gap-10'>
-                  <Image src='images/service.png' alt='services' />
+                  <Image src={service} alt='services' />
                   <div>
                     <Text as='h6' className='mb-0'>Free Shipping</Text>
                     <Text as='p' className='mb-0'>From all orders of $5</Text>
                   </div>
                 </div>
                 <div className='d-flex align-items-center gap-15'>
-                  <Image src='images/service-02.png' alt='services' />
+                  <Image src={service2} alt='services' />
                   <div>
                     <Text as='h6' className='mb-0'>Daily Surprise Offers</Text>
                     <Text as='p' className='mb-0'>Save up to 25% off</Text>
                   </div>
                 </div>
                 <div className='d-flex align-items-center gap-15'>
-                  <Image src='images/service-03.png' alt='services' />
+                  <Image src={service3} alt='services' />
                   <div>
                     <Text as='h6' className='mb-0'>Support 24/7</Text>
                     <Text as='p' className='mb-0'>Shop with an expert</Text>
                   </div>
                 </div>
                 <div className='d-flex align-items-center gap-15'>
-                  <Image src='images/service-04.png' alt='services' />
+                  <Image src={service4} alt='services' />
                   <div>
                     <Text as='h6' className='mb-0'>Affordable Prices</Text>
                     <Text as='p' className='mb-0'>Get factory default prices</Text>
                   </div>
                 </div>
                 <div className='d-flex align-items-center gap-15'>
-                  <Image src='images/service-05.png' alt='services' />
+                  <Image src={service5} alt='services' />
                   <div>
                     <Text as='h6' className='mb-0'>Secure Payments</Text>
                     <Text as='p' className='mb-0'>100% protected payments</Text>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className='home-wrapper-secondary py-5'>
-        <div className='container-xxl'>
-          <div className='row'>
-            <div className='col-12'>
-              <div className='categories d-flex flex-wrap justify-content-between align-items-center rounded-5'>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Music & Gaming</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/camera.jpg' alt='' />
-                </div>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Cameras</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/camera.jpg' alt='' />
-                </div>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Smart TV</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/tv.jpg' alt='' />
-                </div>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Smart Watches</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/headphone.jpg' alt='' />
-                </div>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Music & Gaming</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/camera.jpg' alt='' />
-                </div>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Cameras</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/camera.jpg' alt='' />
-                </div>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Smart TV</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/tv.jpg' alt='' />
-                </div>
-
-                <div className='d-flex gap-30 align-items-center '>
-                  <div>
-                    <Text as='h6'>Smart Watches</Text>
-                    <Text as='p'>10 Items</Text>
-                  </div>
-                  <Image src='images/headphone.jpg' alt='' />
                 </div>
               </div>
             </div>
@@ -256,7 +195,7 @@ const Home = () => {
                   <Text as='p'>From $399 or $16.62/month for 24 month *</Text>
                 </div>
                 <Image
-                  src='images/watch-01.jpeg'
+                  src={headphone}
                   alt='famous'
                   className='rounded-5'
                 />
@@ -271,7 +210,7 @@ const Home = () => {
                   <Text as='p'>27-inch 5K Retina display with unbelievable light force</Text>
                 </div>
                 <Image
-                  src='images/watch-01.jpeg'
+                  src={tv}
                   alt='famous'
                   className='rounded-5'
                 />
@@ -286,7 +225,7 @@ const Home = () => {
                   <Text as='p'>Now in Green, From $399 or $16.62/month for 24 month *</Text>
                 </div>
                 <Image
-                  src='images/watch-01.jpeg'
+                  src={headphone}
                   alt='famous'
                   className='rounded-5'
                 />
@@ -301,7 +240,7 @@ const Home = () => {
                   <Text as='p'>From $499 or $12.62/month for 6 months *</Text>
                 </div>
                 <Image
-                  src='images/watch-01.jpeg'
+                  src={camera}
                   alt='famous'
                   className='rounded-5'
                 />

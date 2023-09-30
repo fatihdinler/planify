@@ -1,18 +1,20 @@
 import React from 'react'
 import { Text, Image } from '@chakra-ui/react'
+import cross from '../../shared/images/cross.svg'
+import watch from '../../shared/images/watch-01.jpeg'
 
 const WishlistProductCard = () => {
   return (
     <div className='wishlist-card position-relative rounded-5'>
       <Image
-        src='images/cross.svg'
+        src={cross}
         alt='cross'
         className='position-absolute cross img-fluid '
       />
 
       <div>
         <Image
-          src='images/watch-01.jpeg'
+          src={watch}
           alt='product-compare'
         />
       </div>

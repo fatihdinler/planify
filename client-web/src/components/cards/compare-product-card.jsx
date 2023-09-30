@@ -1,19 +1,21 @@
 import React from 'react'
 import { Text, Image, Badge } from '@chakra-ui/react'
 import { Color } from '../../components'
+import cross from '../../shared/images/cross.svg'
+import watch from '../../shared/images/watch-01.jpeg'
 
 const CompareProductCard = () => {
   return (
     <div className='compare-product-card position-relative rounded-5'>
       <Image
-        src='images/cross.svg'
+        src={cross}
         alt='cross'
         className='position-absolute cross img-fluid '
       />
 
       <div className='product-card-image'>
         <Image
-          src='images/watch-01.jpeg'
+          src={watch}
           alt='product-compare'
         />
       </div>

@@ -14,6 +14,7 @@ import {
   ShippingIcon,
   FAQIcon,
 } from '../icons/icons'
+import newsletter from '../../shared/images/newsletter.png'
 
 const Footer = () => {
   return (
@@ -24,7 +25,7 @@ const Footer = () => {
             <div className='col-5'>
               <div className='footer-top-data d-flex gap-30 align-items-center'>
                 <Image
-                  src='images/newsletter.png'
+                  src={newsletter}
                   alt='newsletter'
                 />
                 <Text as='h2' className='mb-0'>Sign Up for Newsletter</Text>

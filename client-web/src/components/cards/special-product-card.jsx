@@ -2,6 +2,7 @@ import React from 'react'
 import { Image, Text, Button, Progress } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
+import tab1 from '../../shared/images/tab1.jpg'
 
 const SpecialProductCard = () => {
   return (
@@ -10,7 +11,7 @@ const SpecialProductCard = () => {
         <div className='d-flex justify-content-between'>
           <div className='align-self-center'>
             <Image
-              src='images/tab1.jpg'
+              src={tab1}
               alt='watch'
               className='img-fluid'
             />

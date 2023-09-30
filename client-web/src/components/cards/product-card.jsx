@@ -2,6 +2,12 @@ import React from 'react'
 import { Image, Text, Button } from '@chakra-ui/react'
 import ReactStars from 'react-rating-stars-component'
 import { Link, useLocation } from 'react-router-dom'
+import watch from '../../shared/images/watch.jpeg'
+import watch01 from '../../shared/images/watch-01.jpeg'
+import wish from '../../shared/images/wish.svg'
+import prodcompare from '../../shared/images/prodcompare.svg'
+import view from '../../shared/images/view.svg'
+import addcart from '../../shared/images/add-cart.svg'
 
 const ProductCard = ({ grid }) => {
 
@@ -14,19 +20,19 @@ const ProductCard = ({ grid }) => {
           <div className='wishlist-icon position-absolute '>
             <Link>
               <Image
-                src='images/wish.svg'
+                src={wish}
               />
             </Link>
           </div>
 
           <div className='product-image'>
             <Image
-              src='images/watch.jpeg'
+              src={watch}
               alt='product'
               className='img-fluid'
             />
             <Image
-              src='images/watch-01.jpeg'
+              src={watch01}
               alt='product'
               className='img-fluid'
             />
@@ -60,19 +66,19 @@ const ProductCard = ({ grid }) => {
             <div className='d-flex flex-column gap-15'>
               <Link>
                 <Image
-                  src='images/prodcompare.svg'
+                  src={prodcompare}
                 />
               </Link>
 
               <Link>
                 <Image
-                  src='images/view.svg'
+                  src={view}
                 />
               </Link>
 
               <Link>
                 <Image
-                  src='images/add-cart.svg'
+                  src={addcart}
                 />
               </Link>
             </div>

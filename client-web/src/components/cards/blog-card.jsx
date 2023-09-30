@@ -1,13 +1,14 @@
 import React from 'react'
 import { Image, Text, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import blog from '../../shared/images/blog-1.jpg'
 
 const BlogCard = () => {
   return (
     <div className='blog-card rounded-5'>
       <div className='card-image'>
         <Image
-          src='images/blog-1.jpg'
+          src={blog}
           alt='blog'
           className='img-fluid rounded-top-5 w-100'
         />

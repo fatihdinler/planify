@@ -2,6 +2,11 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { Text, Heading, Input, InputRightElement, InputGroup, Image, Menu, MenuButton, MenuList, MenuItem, Button, Flex } from '@chakra-ui/react'
 import { BsSearch } from 'react-icons/bs'
+import compare from '../../shared/images/compare.svg'
+import wishlist from '../../shared/images/wishlist.svg'
+import user from '../../shared/images/user.svg'
+import cart from '../../shared/images/cart.svg'
+
 
 const Header = () => {
   return (
@@ -65,7 +70,7 @@ const Header = () => {
                   <Link
                     to='/compare-product'
                     className='d-flex align-items-center gap-10'>
-                    <Image src='images/compare.svg' alt='compare' />
+                    <Image src={compare} alt='compare' />
                     <Text className='text-white mb-0' fontSize='small'>
                       Compare
                       <br />
@@ -77,7 +82,7 @@ const Header = () => {
                   <Link
                     to='/wishlist'
                     className='d-flex align-items-center gap-10'>
-                    <Image src='images/wishlist.svg' alt='wishlist' />
+                    <Image src={wishlist} alt='wishlist' />
                     <Text className='text-white mb-0' fontSize='small'>
                       Favourite
                       <br />
@@ -89,7 +94,7 @@ const Header = () => {
                   <Link 
                     to='/sign-in'
                     className='d-flex align-items-center gap-10'>
-                    <Image src='images/user.svg' alt='user' />
+                    <Image src={user} alt='user' />
                     <Text className='text-white mb-0' fontSize='small'>
                       Login
                       <br />
@@ -99,7 +104,7 @@ const Header = () => {
                 </div>
                 <div>
                   <Link className='d-flex align-items-center gap-10'>
-                    <Image src='images/cart.svg' alt='cart' />
+                    <Image src={cart} alt='cart' />
                     <div className='d-flex flex-column gap-1'>
                       <span className='badge bg-white text-dark '>
                         0
