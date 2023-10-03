@@ -16,6 +16,7 @@ import {
   RefundPolicy,
   ShippingPolicy,
   TermsConditionPolicy,
+  Cart,
 } from './app'
 
 const routes = [
@@ -36,6 +37,8 @@ const routes = [
   { key: 'refund-policy', path: '/refund-policy', component: <RefundPolicy /> },
   { key: 'shipping-policy', path: '/shipping-policy', component: <ShippingPolicy /> },
   { key: 'terms-condition-policy', path: '/terms-condition-policy', component: <TermsConditionPolicy /> },
+  { key: 'cart', path: '/cart', component: <Cart /> },
+
 ]
 
 export default routes
