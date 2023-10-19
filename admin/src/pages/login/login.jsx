@@ -23,7 +23,13 @@ const Login = () => {
         <Link to='/admin'>
           <Button
             content='Login'
-            style={{ color: '#6495ED', borderColor: '#6495ED' }}
+            style={{ color: 'white', backgroundColor: '#6495ED' }}
+          />
+        </Link>
+        <Link to='/forgot-password'>
+          <Button
+            content='Forgot Password'
+            style={{ color: '#6495ED', borderColor: '#6495ED', marginTop: 15 }}
           />
         </Link>
       </div>

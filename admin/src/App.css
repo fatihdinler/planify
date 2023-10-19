@@ -15,13 +15,48 @@ body {
 }
 
 .logo {
-  height: 32px;
-  margin: 16px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #ffd333;
+  margin: 0;
 }
 
 .ant-layout {
   min-height: 100vh;
+}
+
+main {
+  overflow-y: scroll;
+}
+
+.ant-layout-sider {
+  flex: 0 0 250px !important;
+  max-width: 250px !important;
+  min-width: 250px !important;
+  width: 250px !important;
+}
+
+.sm-logo {
+  display: none;
+  transition: 0.3s;
+}
+
+.lg-logo {
+  display: block;
+  transition: 0.3s;
+}
+
+.ant-layout-sider-collapsed {
+  flex: 0 0 80px !important;
+  max-width: 80px !important;
+  min-width: 80px !important;
+  width: 80px !important;
+}
+
+.ant-layout-sider-collapsed .sm-logo {
+  display: block;
+}
+
+.ant-layout-sider-collapsed .lg-logo {
+  display: none;
 }
 
 @import url(./shared/style/pages/login.css);
