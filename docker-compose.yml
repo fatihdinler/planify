@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  express-server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo-db
+    volumes:
+      - ./server:/usr/src/app
+
+  mongo-db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+  react-web:
+    build: ./client-web
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./client-web:/usr/src/app  # Burada değişiklik
+
+  react-native:
+    build: ./client-mobile
+    ports:
+      - "19000:19000"
+      - "19001:19001"
+      - "19002:19002"
+
+volumes:
+  mongodb-data:
